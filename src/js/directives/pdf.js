@@ -88,7 +88,12 @@ module.exports = function(app) {
               // (container is only used for size measurements and events)
               container: element[0],
               viewer: element[0],
-              removePageBorders: true
+              removePageBorders: true,
+              linkService: {
+                getDestinationHash: function(dest) {
+                  return '#' + encodeURIComponent(dest);
+                }
+              }
             });
 
             // set scale
