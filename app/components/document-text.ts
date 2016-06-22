@@ -6,19 +6,20 @@ import template from './document-text.html';
 
 class DocumentTextCtrl {
   // input
-  revisions: Array<any>;
   discussions: Array<any>;
+  revisions: Array<any>;
 
   // internal
   activeRevision: any;
   revisionAccess: any;
 
+  anchor: string;
+  currentPageNumber: number;
   draftSelectors: any;
   highlights: Array<any>;
   hoveredHighlights: any;
   hoveredMarginDiscussions: any;
   pageCoordinates: any;
-  anchor: string;
 
   static $inject = ['$http', '$location', '$routeSegment', '$scope', 'config',
     'notificationService', 'tourService'];
@@ -28,6 +29,9 @@ class DocumentTextCtrl {
     this.hoveredHighlights = {};
     this.hoveredMarginDiscussions = {draft: true};
     this.pageCoordinates = {};
+    this.currentPageNumber = 0;
+
+    $scope.$watch('$ctrl.currentPageNumber', this.updatePageNumber.bind(this), true);
 
     // update active revision
     $scope.$watch('$ctrl.revisions', this.updateActiveRevision.bind(this));
@@ -145,6 +149,10 @@ class DocumentTextCtrl {
     }
 
     return false;
+  }
+
+  async updatePageNumber(currentPageNumber) {
+    this.$location.hash('p:' + currentPageNumber);
   }
 
   async updateActiveRevision(revisions) {

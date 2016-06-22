@@ -52,9 +52,11 @@
       </div>
 
       <div>
-        <input class="text-right" type="text" value="1" size="{{$ctrl.pdfStatus.pdf.numPages.toString().length}}">
+        <input class="text-right" type="text" ng-model="$ctrl.currentPageNumber"
+          ng-model-options="{ debounce: 500 }"
+          size="{{$ctrl.pdfStatus.pdf.numPages.toString().length}}"
+        >
         / {{$ctrl.pdfStatus.pdf.numPages}}
-        <!-- <input type="text" value="{{$ctrl.pdfStatus.pdf.numPages}}" size="{{$ctrl.pdfStatus.pdf.numPages.toString().length}}" disabled="true"> -->
       </div>
 
       <div
