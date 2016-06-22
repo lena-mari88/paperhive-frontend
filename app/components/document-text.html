@@ -51,6 +51,12 @@
         </div>
       </div>
 
+      <div>
+        <input class="text-right" type="text" value="1" size="{{$ctrl.pdfStatus.pdf.numPages.toString().length}}">
+        / {{$ctrl.pdfStatus.pdf.numPages}}
+        <!-- <input type="text" value="{{$ctrl.pdfStatus.pdf.numPages}}" size="{{$ctrl.pdfStatus.pdf.numPages.toString().length}}" disabled="true"> -->
+      </div>
+
       <div
         ng-if="$ctrl.revisionAccess[$ctrl.activeRevision.revision]"
         class="ph-docoument-info-download text-right"
